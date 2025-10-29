@@ -4,6 +4,8 @@ The fastest way to get NixOS running on UTM SE on your iPad.
 
 ## 🎯 One-Command Setup
 
+**Replacing Ubuntu or another Linux VM?** See [REPLACE-UBUNTU.md](./REPLACE-UBUNTU.md) for specific instructions.
+
 ### On Your Mac/Linux Machine
 
 ```bash

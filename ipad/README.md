@@ -4,6 +4,8 @@ Fully automated, declarative NixOS installation for UTM SE on iPad. Just initial
 
 ## 🚀 Quick Start
 
+**Want to replace an existing Ubuntu VM?** See [REPLACE-UBUNTU.md](./REPLACE-UBUNTU.md)
+
 ### Method 1: Initialize on iPad (Via iSH or a-Shell)
 
 If you have Nix installed on your iPad via iSH or a-Shell:
@@ -86,6 +88,8 @@ exit
 - **configuration.nix** - System configuration
 - **disk-config.nix** - Declarative disk layout (disko)
 - **README.md** - This file
+- **QUICKSTART.md** - Fast-track installation guide
+- **REPLACE-UBUNTU.md** - Replace existing Ubuntu/Linux VM with NixOS
 
 ## 🔧 Customization
 
