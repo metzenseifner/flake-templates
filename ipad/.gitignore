@@ -1,0 +1,25 @@
+# Nix build outputs
+result
+result-*
+
+# Hardware configuration (generated per-machine)
+hardware-configuration.nix
+
+# Secrets
+secrets/
+*.age
+*.key
+*.pem
+
+# macOS
+.DS_Store
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# direnv
+.direnv/

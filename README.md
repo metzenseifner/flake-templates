@@ -21,7 +21,7 @@ When we start using flake, we must specify which system this flake is targeting 
 
 ## Templates
 
-Currently I have 6 templates to cover my daily needs.
+Currently I have 8 templates to cover my daily needs.
 
 ### default / shell
 
@@ -70,6 +70,39 @@ This template can be used to provision NixOS server with [nixos-anywhere](https:
 ```bash
 nix flake init -t github:liyangau/flake-templates#server
 ```
+
+### nixos-system
+
+A minimal, architecture-agnostic NixOS system configuration template suitable for any architecture. Includes bootstrap guides for installing from other Linux distributions, disko integration for automated partitioning, and support for x86_64 and aarch64.
+
+```bash
+nix flake init -t github:metzenseifner/flake-templates#nixos-system
+```
+
+### ipad
+
+**Self-contained, automated NixOS installation for UTM SE on iPad.** This template provides a fully declarative setup with automated disk provisioning, making it perfect for development on iPad. Just initialize and build!
+
+Key features:
+- 🚀 One-command installation
+- 📦 Automated disk partitioning with disko
+- 🔧 Optimized for UTM/QEMU virtualization
+- 📱 iPad-friendly (SSH access, clipboard sharing)
+- 🎯 Builds bootable ISO or ready-to-import VM images
+- ⚡ ARM64 native (fast performance)
+
+```bash
+# Initialize from template
+nix flake init -t github:metzenseifner/flake-templates#ipad
+
+# Build bootable ISO (on Mac/Linux)
+nix build .#iso
+
+# Or run automated installer (from live ISO on iPad)
+sudo nix run .#install
+```
+
+Each instance initialized from this template develops independently, allowing per-project customization while maintaining a consistent baseline.
 
 ## unfree App
 

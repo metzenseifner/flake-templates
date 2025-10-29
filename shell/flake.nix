@@ -30,7 +30,7 @@
           shellHook = ''
           # export PATH=$NEWPATH:$PATH
           echo "🔧 Activated nix shell for system: ${system}"
-          # echo "📦 Available packages: ${packageNames}"
+          echo "📦 Available packages: ${packageNames}"
           echo "ℹ️  Flake: ${self.description}"
           '';
         };

@@ -27,6 +27,14 @@
         path = ./server;
         description = "Manage NixOS server remotely";
       };
+      nixos-system = {
+        path = ./nixos-system;
+        description = "Minimal NixOS system for any architecture";
+      };
+      ipad = {
+        path = ./ipad;
+        description = "Self-contained NixOS for UTM SE on iPad";
+      };
     };
     defaultTemplate = self.templates.shell;
     };
