@@ -35,6 +35,10 @@
         path = ./ipad;
         description = "Self-contained NixOS for UTM SE on iPad";
       };
+      dynatrace = {
+        path = ./dynatrace;
+        description = "Dynatrace app development with dtp-cli";
+      };
     };
     defaultTemplate = self.templates.shell;
     };

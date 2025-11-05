@@ -21,7 +21,7 @@ When we start using flake, we must specify which system this flake is targeting 
 
 ## Templates
 
-Currently I have 8 templates to cover my daily needs.
+Currently I have 9 templates to cover my daily needs.
 
 ### default / shell
 
@@ -103,6 +103,20 @@ sudo nix run .#install
 ```
 
 Each instance initialized from this template develops independently, allowing per-project customization while maintaining a consistent baseline.
+
+### dynatrace
+
+This template sets up a development environment for building Dynatrace apps using the latest stable dtp-cli (`@dynatrace-sdk/dt-app`). It includes Node.js 20 and automatically installs the dt-app CLI tool.
+
+Key features:
+- 🚀 Latest dtp-cli via npm
+- 📦 Node.js 20 runtime
+- 🔧 Git for version control
+- 🎯 Ready for Dynatrace app development
+
+```bash
+nix flake init -t github:liyangau/flake-templates#dynatrace
+```
 
 ## unfree App
 
