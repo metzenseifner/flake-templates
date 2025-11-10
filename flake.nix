@@ -39,6 +39,10 @@
         path = ./dynatrace;
         description = "Dynatrace app development with dtp-cli";
       };
+      kubernetes = {
+        path = ./kubernetes;
+        description = "Kubernetes development environment with AWS EKS access";
+      };
     };
     defaultTemplate = self.templates.shell;
     };
