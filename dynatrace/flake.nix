@@ -40,7 +40,6 @@
           echo "🚀 Dynatrace App Development Environment"
           echo "   - dt-app CLI available"
           echo "   - Run 'dt-app --help' to get started"
-          echo "ℹ️  Flake: ${self.description}"
           '';
         };
       }
