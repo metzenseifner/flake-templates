@@ -19,9 +19,14 @@
     devShells = forEachSystem (
       { pkgs, system }:
       let
+          bootstrap-dynatrace-app = pkgs.writeShellScriptBin "bootstrap-dynatrace-app" ''
+            npx dt-app@latest create --environment-url https://wkf10640.apps.dynatrace.com "$@"
+          '';
+          
           myPackages = with pkgs; [
-            nodejs_20
+            nodejs_22
             git
+            bootstrap-dynatrace-app
           ];
           packageNames = builtins.concatStringsSep " " (map (p: p.name) myPackages);
       in
@@ -37,9 +42,17 @@
           
           echo "🔧 Activated nix shell for system: ${system}"
           echo "📦 Available packages: ${packageNames}"
+          echo "   See https://developer.dynatrace.com/quickstart/tutorial/create-new-dynatrace-app/"
           echo "🚀 Dynatrace App Development Environment"
           echo "   - dt-app CLI available"
           echo "   - Run 'dt-app --help' to get started"
+          echo "   - Run 'bootstrap-dynatrace-app' to create a new app"
+          echo ""
+          echo "💡 Common dt-app commands:"
+          echo "   - dt-app dev     : Start development server"
+          echo "   - dt-app build   : Build the app"
+          echo "   - dt-app deploy  : Deploy the app"
+          echo "   - dt-app test    : Run tests"
           '';
         };
       }
