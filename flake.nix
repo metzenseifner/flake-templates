@@ -11,6 +11,10 @@
         path = ./local;
         description = "Use local package default.nix";
       };
+      go = {
+        path = "./go"
+        description= "Create a Go with parameterized golangci-lint v1 or v2"
+      };
       python = {
         path = ./python;
         description = "Create python 3.12 environment with libraries";
