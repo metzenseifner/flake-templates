@@ -20,7 +20,9 @@
       { pkgs, system }:
       let
           bootstrap-dynatrace-app = pkgs.writeShellScriptBin "bootstrap-dynatrace-app" ''
-            npx dt-app@latest create --environment-url https://wkf10640.apps.dynatrace.com "$@"
+            cmd='npx dt-app@latest create --environment-url https://vzx38435.dev.apps.dynatracelabs.com "$@"'
+            echo "$cmd"
+            eval "$cmd"
           '';
           
           myPackages = with pkgs; [
