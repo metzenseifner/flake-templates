@@ -1,53 +1,55 @@
 {
   description = "A collection of project templates";
 
-  outputs = { self }: {
-    templates = {
-      nur = {
-        path = ./nur;
-        description = "Use packages available on NUR";
+  outputs =
+    { self }:
+    {
+      templates = {
+        nur = {
+          path = ./nur;
+          description = "Use packages available on NUR";
+        };
+        local = {
+          path = ./local;
+          description = "Use local package default.nix";
+        };
+        go = {
+          path = "./go";
+          description = "Create a Go with parameterized golangci-lint v1 or v2";
+        };
+        python = {
+          path = ./python;
+          description = "Create python 3.12 environment with libraries";
+        };
+        shell = {
+          path = ./shell;
+          description = "Use packages available on nixpkgs";
+        };
+        docker = {
+          path = ./docker;
+          description = "Build Docker images with Nix";
+        };
+        server = {
+          path = ./server;
+          description = "Manage NixOS server remotely";
+        };
+        nixos-system = {
+          path = ./nixos-system;
+          description = "Minimal NixOS system for any architecture";
+        };
+        ipad = {
+          path = ./ipad;
+          description = "Self-contained NixOS for UTM SE on iPad";
+        };
+        dynatrace = {
+          path = ./dynatrace;
+          description = "Dynatrace app development with dtp-cli";
+        };
+        kubernetes = {
+          path = ./kubernetes;
+          description = "Kubernetes development environment with AWS EKS access";
+        };
       };
-      local = {
-        path = ./local;
-        description = "Use local package default.nix";
-      };
-      go = {
-        path = "./go"
-        description= "Create a Go with parameterized golangci-lint v1 or v2"
-      };
-      python = {
-        path = ./python;
-        description = "Create python 3.12 environment with libraries";
-      };
-      shell = {
-        path = ./shell;
-        description = "Use packages available on nixpkgs";
-      };
-      docker = {
-        path = ./docker;
-        description = "Build Docker images with Nix";
-      };
-      server = {
-        path = ./server;
-        description = "Manage NixOS server remotely";
-      };
-      nixos-system = {
-        path = ./nixos-system;
-        description = "Minimal NixOS system for any architecture";
-      };
-      ipad = {
-        path = ./ipad;
-        description = "Self-contained NixOS for UTM SE on iPad";
-      };
-      dynatrace = {
-        path = ./dynatrace;
-        description = "Dynatrace app development with dtp-cli";
-      };
-      kubernetes = {
-        path = ./kubernetes;
-        description = "Kubernetes development environment with AWS EKS access";
-      };
-    };
-    defaultTemplate = self.templates.shell;
+      defaultTemplate = self.templates.shell;
     };
 }
