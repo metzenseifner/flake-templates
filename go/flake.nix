@@ -12,10 +12,11 @@
   inputs = {
     systems.url = "github:nix-systems/default";
     nixpkgs.url = "github:nixos/nixpkgs/release-25.05";
-    
+
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
   };
-  outputs = inputs@{
+  outputs =
+    inputs@{
       self,
       nixpkgs,
       systems,
@@ -30,19 +31,26 @@
           system:
           f {
             inherit system;
-            pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
-            
-          pkgsUnstable = import inputs."nixpkgs-unstable" {
-            inherit system;
-            config.allowUnfree = true;
-          };
+            pkgs = import nixpkgs {
+              inherit system;
+              config.allowUnfree = true;
+            };
+
+            pkgsUnstable = import inputs."nixpkgs-unstable" {
+              inherit system;
+              config.allowUnfree = true;
+            };
 
           }
         );
     in
     {
       devShells = forEachSystem (
-        { pkgs, pkgsUnstable, system }:
+        {
+          pkgs,
+          pkgsUnstable,
+          system,
+        }:
         let
           lib = pkgs.lib;
 
@@ -160,12 +168,17 @@
 
           # -- helper to build a shell for a chosen version --
           mkDevShell =
-            { drv, defaultWrapper, extraPackages ? [] }:
+            {
+              drv,
+              defaultWrapper,
+              extraPackages ? [ ],
+            }:
             let
               pkgsList = [
                 drv
                 defaultWrapper
-              ] ++ extraPackages;
+              ]
+              ++ extraPackages;
               packageNames = builtins.concatStringsSep " " (map (p: p.name) pkgsList);
             in
             pkgs.mkShellNoCC {
@@ -173,8 +186,10 @@
               shellHook = commonShellHook packageNames;
             };
 
-            
-          extraPackages = with pkgsUnstable; [ github-copilot-cli bats ];
+          extraPackages = with pkgsUnstable; [
+            github-copilot-cli
+            bats
+          ];
         in
         {
           # Mutually exclusive shells where "golangci-lint" maps to one version
