@@ -5,6 +5,10 @@
     { self }:
     {
       templates = {
+        aws = {
+          path = ./aws;
+          description = "Create AWS CLI shell to help setup";
+        };
         nur = {
           path = ./nur;
           description = "Use packages available on NUR";
