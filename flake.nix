@@ -45,6 +45,14 @@
           path = ./dynatrace;
           description = "Dynatrace app development with dtp-cli";
         };
+        dynatrace-golangci-lint = {
+          path = ./dynatrace-golangci-lint;
+          description = "Create a shell with golangci-lint built from source for a specific version and exec string read from Dockerfile";
+        };
+        mikefarah = {
+          path = ./mikefarah;
+          description = "Create a shell with Mike Farah's jq and yq";
+        };
         kubernetes = {
           path = ./kubernetes;
           description = "Kubernetes development environment with AWS EKS access";
