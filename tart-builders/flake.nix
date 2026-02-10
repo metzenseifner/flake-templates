@@ -7,7 +7,10 @@
     { self, nixpkgs }:
     let
       darwinSystem = "aarch64-darwin";
-      pkgsDarwin = import nixpkgs { system = darwinSystem; };
+      pkgsDarwin = import nixpkgs {
+        system = darwinSystem;
+        config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "tart" ];
+      };
 
       # NixOS builders run as aarch64-linux VMs under Tart on Apple Silicon.
       linuxSystem = "aarch64-linux";
@@ -130,9 +133,20 @@
 
       apps.${darwinSystem} =
         let
-          makeScript = name: scriptPath: pkgsDarwin.writeShellScriptBin name ''
-            exec ${pkgsDarwin.bash}/bin/bash ${scriptPath}
-          '';
+          runtimeDeps = with pkgsDarwin; [
+            tart
+            openssh
+            coreutils
+            gnugrep
+            gnutar
+            gzip
+          ];
+          makeScript =
+            name: scriptPath:
+            pkgsDarwin.writeShellScriptBin name ''
+              export PATH="${lib.makeBinPath runtimeDeps}:$PATH"
+              exec ${pkgsDarwin.bash}/bin/bash ${scriptPath}
+            '';
         in
         {
           builder-up = {
@@ -146,9 +160,8 @@
           builder-status = {
             type = "app";
             program = "${pkgsDarwin.writeShellScriptBin "builder-status" ''
+              export PATH="${lib.makeBinPath runtimeDeps}:$PATH"
               tart list
-              echo
-              tart ps || true
             ''}/bin/builder-status";
           };
         };

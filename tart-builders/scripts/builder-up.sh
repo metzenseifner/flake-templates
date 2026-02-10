@@ -27,7 +27,8 @@ local name="$1" image="$2"
 if ! tart list | grep -qx "$name"; then
 tart clone "$image" "$name"
 fi
-if ! tart ps | awk '{print $1}' | grep -qx "$name"; then
+# Check if VM is running by looking for its IP
+if ! tart ip "$name" >/dev/null 2>&1; then
 tart run "$name" --detach
 fi
 }
