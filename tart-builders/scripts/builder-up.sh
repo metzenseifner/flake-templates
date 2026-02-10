@@ -49,7 +49,7 @@ if [[ -z "$BUILDER_SSH_PUBKEY" ]]; then
 fi
 
 tart_has_vm() { tart list | grep -qx "$1"; }
-tart_is_running() { tart ps | awk '{print $1}' | grep -qx "$1"; }
+tart_is_running() { tart ip "$1" >/dev/null 2>&1; }
 
 ensure_tart_vm_shell() {
   local name="$1"
@@ -106,10 +106,9 @@ docker_build_target_to() {
     -v "${NIX_STORE_VOLUME}:/nix" \
     -w /src \
     "$NIX_DOCKER_IMAGE" \
-    sh -lc \
-    'nix --extra-experimental-features "nix-command flakes" \
-build --impure '"$target"' --print-out-paths' \
-    /tmp/nix-outpaths.txt
+    nix --extra-experimental-features "nix-command flakes" \
+    build --impure "$target" --print-out-paths \
+    > /tmp/nix-outpaths.txt
 
   local storepath
   storepath="$(tail -n 1 /tmp/nix-outpaths.txt | tr -d '\r')"
@@ -124,7 +123,7 @@ build --impure '"$target"' --print-out-paths' \
     -v "${NIX_STORE_VOLUME}:/nix" \
     -v "$PWD:/dst" \
     "$NIX_DOCKER_IMAGE" \
-    sh -lc "cp -f '$storepath' '/dst/$outpath'"
+    cp -f "$storepath" "/dst/$outpath"
 
   [[ -f "$outpath" ]] || {
     echo "Expected output file not found: $outpath" >&2
