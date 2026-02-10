@@ -140,6 +140,7 @@
             gnugrep
             gnutar
             gzip
+            sshpass
           ];
           makeScript =
             name: scriptPath:
