@@ -5,6 +5,10 @@
     { self }:
     {
       templates = {
+        tart-builders = {
+          path = ./tart-builders;
+          description = "Create VM Builders with Tart";
+        };
         aws = {
           path = ./aws;
           description = "Create AWS CLI shell to help setup";
