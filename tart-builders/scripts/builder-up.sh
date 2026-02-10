@@ -106,8 +106,7 @@ docker_build_target_to() {
     -v "${NIX_STORE_VOLUME}:/nix" \
     -w /src \
     "$NIX_DOCKER_IMAGE" \
-    nix --extra-experimental-features "nix-command flakes" \
-    build --impure "$target" --print-out-paths \
+    bash -c "nix --extra-experimental-features 'nix-command flakes' build --impure $target --print-out-paths" \
     > /tmp/nix-outpaths.txt
 
   local storepath
