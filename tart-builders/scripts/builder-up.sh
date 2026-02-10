@@ -29,7 +29,7 @@ tart clone "$image" "$name"
 fi
 # Check if VM is running by looking for its IP
 if ! tart ip "$name" >/dev/null 2>&1; then
-tart run "$name" --detach
+tart run "$name" &
 fi
 }
 
@@ -107,8 +107,8 @@ scp ubuntu@"$BOOTSTRAP_IP":~/builder-aarch64.img "$DISK_A"
 scp ubuntu@"$BOOTSTRAP_IP":~/builder-arm32.img "$DISK_B"
 
 # 6) Start NixOS builder VMs
-tart run "$BUILDER_AARCH64" --detach
-tart run "$BUILDER_ARM32" --detach
+tart run "$BUILDER_AARCH64" &
+tart run "$BUILDER_ARM32" &
 
 IP_A="$(wait_for_ip "$BUILDER_AARCH64")"
 IP_B="$(wait_for_ip "$BUILDER_ARM32")"
