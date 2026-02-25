@@ -69,7 +69,7 @@
           # export PATH=$NEWPATH:$PATH
           echo "🔧 Activated nix shell for system: ${system}"
           echo "📦 Available packages: ${packageNames}"
-          echo "🧑🏼‍💻 Available executables:"
+          echo "🧑🏼‍💻 Available executables from the Nix Store:"
           echo "$PATH" | tr ':' '\n' | grep '^/nix/store' | xargs -I{} sh -c 'ls -1 "{}" 2>/dev/null || true' | xargs || true
           '';
         };
