@@ -5,6 +5,10 @@
     { self }:
     {
       templates = {
+        minimal = {
+          path = ./minimal;
+          description = "A minimal flake.";
+        };
         tart-builders = {
           path = ./tart-builders;
           description = "Create VM Builders with Tart";
