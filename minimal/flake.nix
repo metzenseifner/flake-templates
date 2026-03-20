@@ -2,7 +2,7 @@
   description = "Minimal Flake";
 
   inputs = {
-    nigpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
   outputs =
